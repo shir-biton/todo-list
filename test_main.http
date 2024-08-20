@@ -1,0 +1,43 @@
+### 1. Create a New Task
+POST https://127.0.0.1:8000/tasks
+Content-Type: application/json
+
+{
+  "id": 1,
+  "title": "First Task",
+  "description": "This is the first task",
+  "completed": false
+}
+
+### 2. Create Another Task
+POST https://127.0.0.1:8000/tasks
+Content-Type: application/json
+
+{
+  "id": 2,
+  "title": "Second Task",
+  "description": "This is the second task",
+  "completed": false
+}
+
+### 3. Get All Tasks
+GET https://127.0.0.1:8000/tasks
+
+### 4. Get a Task by ID
+GET https://127.0.0.1:8000/tasks/1
+
+### 5. Update a Task (Partial Update)
+PATCH https://127.0.0.1:8000/tasks/1
+Content-Type: application/json
+
+{
+  "title": "Updated First Task",
+  "description": "Updated description",
+  "completed": true
+}
+
+### 6. Delete a Task
+DELETE https://127.0.0.1:8000/tasks/1
+
+### 7. Verify Deletion by Getting All Tasks Again
+GET https://127.0.0.1:8000/tasks

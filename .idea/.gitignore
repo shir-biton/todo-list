@@ -1,0 +1,7 @@
+.vscode/
+*.pyc
+.idea/
+.venv/
+
+/shelf/
+/workspace.xml
