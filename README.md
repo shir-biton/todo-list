@@ -1,13 +1,13 @@
 # todo-list
 Simple To Do List app
 
-# To run server:
+## To run server
 `python main.py`
 (PEM pass phrase:shir)
 
-# To compile client.c
+## To compile client.c
 `gcc -o client client.c -Wall -lcurl`
 
 
-# To run output
+## To run output
 `./client`
