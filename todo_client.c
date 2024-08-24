@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 #include <curl/curl.h>
-#include <unistd.h>  // For sleep function
+#include <unistd.h>
 
-#define SERVER_URL "https://127.0.0.1:8000/tasks"
+#define SERVER_URL "http://127.0.0.1:8002/tasks"
 
 CURL* init_curl(const char *url, struct curl_slist *headers) {
     // Helper function to initialize and configure a CURL object
