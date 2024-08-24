@@ -68,7 +68,6 @@ def delete_task(task_id: int):
     return task
 
 
-# Run the server with uvicorn
 if __name__ == "__main__":
     uvicorn.run(
         app,
