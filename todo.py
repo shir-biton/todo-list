@@ -13,6 +13,11 @@ class Task(BaseModel):
     description: Optional[str] = None
     completed: bool = False
 
+class TaskUpdate(BaseModel):
+    title: Optional[str] = None
+    description: Optional[str] = None
+    completed: Optional[bool] = None
+
 
 tasks: List[Task] = []
 
@@ -46,7 +51,7 @@ def get_task(task_id: int):
 
 
 @app.patch("/tasks/{task_id}", response_model=Task)
-def update_task(task_id: int, task: Task):
+def update_task(task_id: int, task: TaskUpdate):
     stored_task = find_task(task_id)
     if not stored_task:
         raise HTTPException(status_code=404, detail="Task not found.")
