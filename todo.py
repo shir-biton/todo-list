@@ -63,14 +63,13 @@ def update_task(task_id: int, task: TaskUpdate):
     return stored_task
 
 
-@app.delete("/tasks/{task_id}", response_model=Task)
+@app.delete("/tasks/{task_id}", status_code=204)
 def delete_task(task_id: int):
     global tasks
     task = find_task(task_id)
     if not task:
         raise HTTPException(status_code=404, detail="Task not found.")
     tasks = [t for t in tasks if t.id != task_id]
-    return task
 
 
 if __name__ == "__main__":
