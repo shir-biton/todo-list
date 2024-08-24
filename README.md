@@ -31,9 +31,11 @@ Open browser and go to `http://127.0.0.0:8003` open Developer tools and check co
 # 2st Demo - http1.1 vs http2
 
 ## To run cookie server
-`cd http2`
-`python scott_h11.py`
-`python scott_h2.py`
+```
+cd http2
+python scott_h11.py
+python scott_h2.py
+```
 (PEM pass phrase:shir)
 
 ## Check browser
