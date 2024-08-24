@@ -26,7 +26,8 @@
 `./cookie`
 
 ## Check browser
-Open browser and go to `http://127.0.0.0:8003` open Developer tools and check cookies
+Open browser and go to: `http://127.0.0.0:8003/set-cookie/potato`, open Developer tools and check cookies and then go to:
+`http://127.0.0.0:8003/get-cookie`
 
 # 2st Demo - http1.1 vs http2
 

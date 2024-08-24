@@ -3,7 +3,7 @@ from fastapi import FastAPI, Response, Request
 app = FastAPI()
 @app.get("/set-cookie/{username}")
 def set_cookie(response: Response, username: str):
-    response.set_cookie(key="username", value=username, httponly=True)
+    response.set_cookie(key="username", value=username)
     return {"message": "Cookie has been set"}
 
 @app.get("/get-cookie")

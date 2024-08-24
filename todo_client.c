@@ -7,11 +7,13 @@
 #define SERVER_URL "http://127.0.0.1:8002/tasks"
 
 CURL* init_curl(const char *url, struct curl_slist *headers) {
-    // Helper function to initialize and configure a CURL object
+    // Utility function to initialize and configure a CURL object
     CURL *curl = curl_easy_init();
     if (curl) {
         curl_easy_setopt(curl, CURLOPT_URL, url);
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+        // Disable SSL verification for self-signed certificates
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, 0L);
         curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 0L);
     }
@@ -19,7 +21,7 @@ CURL* init_curl(const char *url, struct curl_slist *headers) {
 }
 
 void perform_request(CURL *curl, const char *success_message) {
-    // Helper function to perform the CURL request and check the response code
+    // Utility function to perform the CURL request and check the response code
     CURLcode res;
     long http_code = 0;
 
@@ -37,8 +39,7 @@ void perform_request(CURL *curl, const char *success_message) {
     curl_easy_cleanup(curl);
 }
 
-void create_task(int id, const char *title, const char *description, int completed) {
-    // Function to create a new task
+void create_task(int id, char *title, char *description, int completed) {
     CURL *curl;
     struct curl_slist *headers = NULL;
     headers = curl_slist_append(headers, "Content-Type: application/json");
@@ -58,20 +59,18 @@ void create_task(int id, const char *title, const char *description, int complet
 }
 
 void get_tasks() {
-    // Function to retrieve all tasks
     CURL *curl = init_curl(SERVER_URL, NULL);
     perform_request(curl, "Tasks retrieved successfully.");
 }
 
 void get_task(int id) {
-    // Function to retrieve a specific task by ID
     char url[256];
     snprintf(url, sizeof(url), "%s/%d", SERVER_URL, id);
     CURL *curl = init_curl(url, NULL);
     perform_request(curl, "Task retrieved successfully.");
 }
 
-void update_task(int id, const char *title, const char *description, int completed) {
+void update_task(int id, char *title, char *description, int completed) {
     // Function to update an existing task
     CURL *curl;
     struct curl_slist *headers = NULL;
