@@ -7,7 +7,6 @@
 #define SERVER_URL "http://127.0.0.1:8002/tasks"
 
 CURL* init_curl(const char *url, struct curl_slist *headers) {
-    // Utility function to initialize and configure a CURL object
     CURL *curl = curl_easy_init();
     if (curl) {
         curl_easy_setopt(curl, CURLOPT_URL, url);
@@ -21,7 +20,6 @@ CURL* init_curl(const char *url, struct curl_slist *headers) {
 }
 
 void perform_request(CURL *curl, const char *success_message) {
-    // Utility function to perform the CURL request and check the response code
     CURLcode res;
     long http_code = 0;
 
@@ -71,7 +69,6 @@ void get_task(int id) {
 }
 
 void update_task(int id, char *title, char *description, int completed) {
-    // Function to update an existing task
     CURL *curl;
     struct curl_slist *headers = NULL;
     headers = curl_slist_append(headers, "Content-Type: application/json");
@@ -94,7 +91,6 @@ void update_task(int id, char *title, char *description, int completed) {
 }
 
 void delete_task(int id) {
-    // Function to delete an existing task
     char url[256];
     snprintf(url, sizeof(url), "%s/%d", SERVER_URL, id);
     CURL *curl = init_curl(url, NULL);
@@ -116,23 +112,23 @@ int main(void) {
     sleep(1);
 
     printf("Retrieving a non-existent task (should fail)...\n");
-    get_task(99); // Attempt to retrieve a task that does not exist
+    get_task(99);
     sleep(1);
 
     printf("Updating the existing task...\n");
     update_task(1, "Updated Task 1", "This is the updated task 1", 1);
     sleep(1);
 
-    printf("Updating a non-existent task (should fail)...\n");
-    update_task(99, "Non-existent Task", "This task does not exist", 1);
+    printf("Show updated task...\n");
+    get_task(1);
     sleep(1);
 
     printf("Deleting the existing task...\n");
     delete_task(1);
     sleep(1);
 
-    printf("Deleting a non-existent task (should fail)...\n");
-    delete_task(99);
+    printf("No tasks...\n");
+    get_tasks();
     sleep(1);
 
     return 0;
